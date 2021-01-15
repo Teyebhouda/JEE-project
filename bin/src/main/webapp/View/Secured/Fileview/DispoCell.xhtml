@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">  
+<h:head>  
+    <h2><center>Disponibilite 3G</center></h2>  
+</h:head>  
+<h:body>  
+    <h:form>  
+        <p:commandButton action="Search?faces-redirect=true" icon="ui-icon-search" value="Search" />  
+    </h:form>  
+  
+    <p:spacer> </p:spacer>  
+    <h:form id="form1">  
+        <p:dataTable id="dataTable" var="file" paginator="true" rows="15" value="#{dispocellService.all}">  
+            <p:column headerText="bscName">  
+                <h:outputText value="#{file.bscName}" />  
+            </p:column>
+            <p:column headerText="sitename">  
+                <h:outputText value="#{file.sitename}" />  
+            </p:column>  
+      
+            <p:column headerText="cellName">  
+                <h:outputText value="#{file.cellName}" />  
+            </p:column>  
+             <p:column headerText="tchTrafficBh">  
+                <h:outputText value="#{file.tchTrafficBh}" />  
+            </p:column>  
+          <p:column headerText="configTCHNumber">  
+                <h:outputText value="#{file.configTCHNumber}" />  
+            </p:column>  
+          <p:column headerText="tchCongestionBh">  
+                <h:outputText value="#{file.tchCongestionBh}" />  
+            </p:column>  
+        
+            <p:column headerText="avgAvailibilityTch">  
+                <h:outputText value="#{file.avgAvailibilityTch}" />  
+            </p:column>  
+ <p:column headerText="configTchNum">  
+                <h:outputText value="#{file.configTchNum}" />  
+            </p:column>  
+ <p:column headerText="tchAvailability">  
+                <h:outputText value="#{file.tchAvailability}" />  
+            </p:column>  
+ 
+  <p:column headerText="date">  
+                <h:outputText value="#{file.date}" />  
+            </p:column>  
+           
+           </p:dataTable>  
+    </h:form>  
+    
+</h:body>  
+  
+</html>
+

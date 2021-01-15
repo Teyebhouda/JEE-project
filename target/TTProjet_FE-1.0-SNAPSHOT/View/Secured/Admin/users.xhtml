@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      	xmlns:pe="http://primefaces.org/ui/extensions"
+>
+     
+<h:head> 
+
+        <ui:include src="/resources/css.xhtml" /> 
+       
+
+</h:head>
+    
+<h:body class="hold-transition skin-blue sidebar-mini">
+     <div class="wrapper">
+
+	<ui:include src="/template/header.xhtml" />   
+      <ui:include src="/template/sidebar.xhtml" />   
+      
+	   
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+            
+
+        <section class="content-header">
+             
+   </section>
+
+        <!-- Main content -->
+        <section class="content" style="background:url('/TTProjet_FE/resources/img/backG.jpg') no-repeat;">
+
+          <!-- Your Page Content Here -->
+          
+          <p:graphicImage value="/resources/img/utilisateurs.png" width="52" style="float:left;" />
+           <p:dialog id="userDetail1" widgetVar="$userDetail1" header="Add User" hideEffect="explode" appendTo="@(body)" resizable="false" draggable="false" closeOnEscape="true">  
+         <h:form prependId="false" id="form">
+
+            <p:panelGrid columns="2" style="border-bottom-width: 0px;">
+                <h:outputText value="FirstName:"/>
+                <p:inputText value="#{userBean.user.firstName}" id="firstname" required="true" requiredMessage="FirstName is required"/>
+            <h:outputText value="LastName:"/>
+                <p:inputText value="#{userBean.user.lastName}" id="lastname" required="true" requiredMessage="LastName is required"/> 
+                
+                 <h:outputText value="UserName:"/>
+                <p:inputText value="#{userBean.user.username}" id="username" required="true" requiredMessage="UserName is required"/>
+                  <h:outputText value="Email:"/>
+                <p:inputText value="#{userBean.user.email}" id="email" required="true" requiredMessage="Email is required"/> 
+                <h:outputText value="Password:"/>
+                <p:password value="#{userBean.user.password}" id="password" required="true" requiredMessage="Password is required"/>
+                 <h:outputText value="ConfirmPassword:"/>
+                <p:password value="#{userBean.confirmPassword}" id="confirmpassword" required="true" requiredMessage="ConfirmPassword is required"/> 
+                 
+                                            
+            </p:panelGrid>
+             <p:spacer height="20px" width="10px">  </p:spacer>
+             
+   <p:row> <p:commandButton action="#{userBean.addUser()}" value="Register" ajax="false"/>
+           <p:commandButton id="cancelAddButtonId" value="Cancel" onclick="handleComplete(xhr, status, args)" />  
+ </p:row>
+                   
+    
+              
+        </h:form>
+    </p:dialog>  
+    <h:outputScript>  
+        /* 
+        <![CDATA[ */  
+function handleComplete(xhr, status, args) {  
+if(args && args.validName) {  
+$userDetail1.hide();  
+}  
+}  
+/* ]]>*/  
+  
+    </h:outputScript>  
+    <p:dialog id="userDetail2" widgetVar="$userDetail2" header="Update User" hideEffect="explode" appendTo="@(body)" resizable="false" draggable="false" closeOnEscape="true">  
+        
+        
+        
+         <h:form>  
+             <h:inputHidden value="#{userBean.user.userId}" />  
+            <p:panelGrid columns="2">  
+               <h:outputLabel for="userfirstname" value="User First Name: *" />  
+               <p:inputText id="userfirstname" value="#{userBean.user.firstName}" label="User First Name" placeholder="User Name" />  
+  
+                <h:outputLabel for="userlastname" value="User Last Name" />  
+                <p:inputText id="userlastname" label="User Last Name" value="#{userBean.user.lastName}" placeholder="User Last Name" />  
+  
+               <h:outputLabel value="UserName:"/>
+                <p:inputText value="#{userBean.user.username}" id="username" required="true" requiredMessage="UserName is required"/>
+                  <h:outputLabel value="Email:"/>
+                <p:inputText value="#{userBean.user.email}" id="email" required="true" requiredMessage="Email is required"/> 
+                <h:outputLabel value="Password:"/>
+                <p:password value="#{userBean.user.password}" id="password" required="true" requiredMessage="Password is required"/>
+                 <h:outputLabel value="ConfirmPassword:"/>
+                <p:password value="#{userBean.confirmPassword}" id="confirmpassword" required="true" requiredMessage="ConfirmPassword is required"/> 
+               
+                <p:commandButton value="Update" ajax="true" icon="ui-icon-disk" update=":form1:userTable" actionListener="#{userBean.UpdateUser(userBean.user)}" oncomplete="handleComplete(xhr, status, args)" />  
+                <p:commandButton value="Cancel" id="cancelButtonId" onclick="handleComplete(xhr, status, args)" />  
+            </p:panelGrid>  
+        </h:form>  
+  
+      
+    </p:dialog>  
+    <h:outputScript id="handleCompleteScript" target="body">  
+        /* 
+        <![CDATA[ */  
+function handleComplete(xhr, status, args) {  
+if(args && args.validName) {  
+$userDetail2.hide();  
+}  
+}  
+/* ]]>*/  
+    </h:outputScript>  
+          <br/> <br/>
+          
+     <h:form id="form1">
+            <p:outputLabel value="Welcome Admin "></p:outputLabel>
+    <h:outputLabel value="#{loginController.username}"></h:outputLabel>
+        
+                                
+
+         <p:spacer height="1px"></p:spacer>
+        <center><h2>User Manager</h2></center>     
+                                 
+           <center><h3>Users</h3></center>
+            <p:commandButton icon="ui-icon-plusthick" id="addUserBtn" value="Add User"  update=":userDetail1" ajax="true" oncomplete="PF('$userDetail1').show()" style="color: darkviolet"  />  
+  
+       
+     <p:dataTable  value="#{userBean.userList}" var="user" editable="true" rowKey="#{user[0]}"  paginator="true" rows="5" id="userTable">
+            <p:column selectionMode="multiple" headerText="Select" style="width:6%" />
+                <p:column headerText="UserId" style="text-align: left;">
+                    <h:outputText value="#{user[0]}"/>
+                
+                </p:column>
+                
+      <p:column filterBy="#{user.firstName}"  filterOptions=""  filterMatchMode="startsWith" headerText="First Name">
+                     <h:outputText value="#{user[1]}"/>
+                  
+      </p:column>
+            
+                    <p:column headerText="Last Name">
+                        <h:outputText value="#{user[2]}"/>
+                    </p:column>
+               
+                <p:column headerText="UserName">
+                    <h:outputText value="#{user[3]}"/>
+                    </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{user[4]}"/>
+                    </p:column>
+                    <p:column headerText="Password" >
+                        <h:outputText value="#{user[5]}">
+                     <f:convertDateTime type="date" pattern="dd-MMM-yyyy"/>
+                         </h:outputText>
+                   </p:column>
+                    <p:column headerText="Status">
+                        <h:outputText value="#{user[6]}"/>
+                    </p:column>
+                     <p:column headerText="Role">
+                         <h:outputText value="#{user[7]}"/>
+                    </p:column>                   
+                <p:column headerText="Edit" style="text-align: center" >  
+                <p:commandButton icon="ui-icon-pencil" id="editUserBtn" value="Edit" ajax="true" actionListener="#{userBean.changeUser(user)}" update=":userDetail2" oncomplete="PF('$userDetail2').show()" style="color: sienna" />  
+  
+            </p:column>  
+  
+            <p:column headerText="Delete" style="text-align: center">  
+  
+                <p:commandButton value="Delete" icon="ui-icon-trash" type="button" onclick="PF('confirmDialog').show()" style="color: #f71752" />  
+                <p:confirmDialog message="Are you sure you want to delete this record?Record once deleted can not be retrieved." header="Deleting" severity="alert" widgetVar="confirmDialog">  
+                    <p:commandButton value="Yes Sure" update=":form1:userTable" action="#{userBean.deleteUser(user)}" oncomplete="PF('confirmDialog').hide()" />  
+  
+                    <p:commandButton value="Not Yet" onclick="PF('confirmDialog').hide();" type="button" />  
+                </p:confirmDialog>  
+  
+            </p:column>  
+         
+            </p:dataTable>
+        </h:form>
+
+	</section><!-- /.content -->
+         
+      </div><!-- /.content-wrapper -->
+
+          <ui:include src="/template/footer.xhtml" />   
+   <ui:include src="/template/sidebarCtrl.xhtml" />   
+       <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+<ui:include src="/resources/js.xhtml" />  
+ <h:outputScript name="js/pdfmake/pdfmake.min.js" />
+        <h:outputScript name="js/pdfmake/vfs_fonts.js" />  
+      </h:body>  
+
+    </html>  
+
+ 

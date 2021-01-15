@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   
+<h:head>
+        <title>Register</title>
+        
+ </h:head>
+<body>
+<center><h2>Register User</h2></center>
+    <a style="color: #FF0000" href="#{request.contextPath}/View/UnSecured/login.xhtml"> Login</a><br/><br/>
+   
+     
+
+     <center><h:form prependId="false" id="form">
+             
+            <p:panelGrid columns="2" style="border-bottom-width: 0px;">
+                <h:outputText value="FirstName:"/>
+                <p:inputText value="#{userBean.user.firstName}" id="firstname" required="true" requiredMessage="FirstName is required"/>
+            <h:outputText value="LastName:"/>
+                <p:inputText value="#{userBean.user.lastName}" id="lastname" required="true" requiredMessage="LastName is required"/> 
+                
+                 <h:outputText value="UserName:"/>
+                <p:inputText value="#{userBean.user.username}" id="username" required="true" requiredMessage="UserName is required"/>
+                  <h:outputText value="Email:"/>
+                <p:inputText value="#{userBean.user.email}" id="email" required="true" requiredMessage="Email is required"/> 
+                <h:outputText value="Password:"/>
+                <p:password value="#{userBean.user.password}" id="password" required="true" requiredMessage="Password is required"/>
+                 <h:outputText value="ConfirmPassword:"/>
+                <p:password value="#{userBean.confirmPassword}" id="confirmpassword" required="true" requiredMessage="ConfirmPassword is required"/> 
+                 
+                                            
+            </p:panelGrid>
+             <p:spacer height="20px" width="10px">  </p:spacer>
+             
+   <p:row> <p:commandButton action="#{userBean.addUser()}" value="Register" ajax="false"/>
+           <p:commandButton type="reset" value="Reset" ajax="false"/> 
+ </p:row>
+             
+              
+        </h:form>
+</center>
+		
+</body>
+</html>

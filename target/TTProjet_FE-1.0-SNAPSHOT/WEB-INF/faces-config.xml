@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+   
+    <managed-bean>
+		<managed-bean-name>dispo3gB</managed-bean-name>
+		<managed-bean-class>com.pfe.service.Dispo3GB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>dispo3gIDao</property-name>
+			<property-class>com.pfe.dao.GenericDao</property-class>
+			<value>#{dispo3gDAO}</value>
+		</managed-property>
+                
+                <managed-property>
+			<property-name>dispo3gIDaoS</property-name>
+			<property-class>com.pfe.dao.Dispo3gDao</property-class>
+			<value>#{dispo3gDAOS}</value>
+		</managed-property>
+	
+	</managed-bean>
+        
+        <managed-bean>
+		<managed-bean-name>dispoBscB</managed-bean-name>
+		<managed-bean-class>com.pfe.service.DispoBscB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>dispoBscIDao</property-name>
+			<property-class>com.pfe.dao.GenericDao</property-class>
+			<value>#{dispobscDAO}</value>
+		</managed-property>
+                  <managed-property>
+			<property-name>dispoBscIDaoS</property-name>
+			<property-class>com.pfe.dao.DispoBscDao</property-class>
+			<value>#{dispoBscDAOS}</value>
+		</managed-property>
+	
+                
+	</managed-bean>
+        
+        <managed-bean>
+		<managed-bean-name>dispoCellB</managed-bean-name>
+		<managed-bean-class>com.pfe.service.DispoCellB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>dispoCellIDao</property-name>
+			<property-class>com.pfe.dao.GenericDao</property-class>
+			<value>#{dispocellDAO}</value>
+		</managed-property>
+                <managed-property>
+			<property-name>dispocellIDaoS</property-name>
+			<property-class>com.pfe.dao.DispoCellDao</property-class>
+			<value>#{dispoCellDAOS}</value>
+		</managed-property>
+	
+              
+	</managed-bean>
+        <managed-bean>
+		<managed-bean-name>dropBscB</managed-bean-name>
+		<managed-bean-class>com.pfe.service.DropBscB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>dropBscIDao</property-name>
+			<property-class>com.pfe.dao.GenericDao</property-class>
+			<value>#{dropbscDAO}</value>
+		</managed-property>
+                 <managed-property>
+			<property-name>dropbscIDaoS</property-name>
+			<property-class>com.pfe.dao.DropBscDao</property-class>
+			<value>#{dropbscDAOS}</value>
+		</managed-property>
+	
+	</managed-bean>
+        <managed-bean>
+		<managed-bean-name>dropCellB</managed-bean-name>
+		<managed-bean-class>com.pfe.service.DropCellB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>dropcellIDao</property-name>
+			<property-class>com.pfe.dao.GenericDao</property-class>
+			<value>#{dropcellDAO}</value>
+		</managed-property>
+                <managed-property>
+			<property-name>dropcellIDaoS</property-name>
+			<property-class>com.pfe.dao.DropCellDao</property-class>
+			<value>#{dropcellDAOS}</value>
+		</managed-property>
+                
+	</managed-bean>
+       
+        
+          <managed-bean>
+		<managed-bean-name>userB</managed-bean-name>
+		<managed-bean-class>com.pfe.service.UserB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		
+	</managed-bean>
+        
+        <managed-bean>
+		<managed-bean-name>kpaB</managed-bean-name>
+		<managed-bean-class>com.pfe.service.KPAB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>kpaIDao</property-name>
+			<property-class>com.pfe.dao.GenericDao</property-class>
+			<value>#{kpaDAO}</value>
+		</managed-property>
+                
+                
+	</managed-bean>
+       
+        
+        
+        
+        
+        
+    <application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver
+		</el-resolver>
+	</application>
+</faces-config>

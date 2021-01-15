@@ -1,0 +1,640 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      	xmlns:pe="http://primefaces.org/ui/extensions"
+>
+     
+<h:head> 
+div.ui-growl {
+   left: 50%;
+   right: 0;
+   margin-left:-150px;
+}
+        <ui:include src="/resources/css.xhtml" /> 
+       
+
+</h:head>
+    
+<h:body class="hold-transition skin-blue sidebar-mini" style="background:url('/TTProjet_FE/resources/img/backG.jpg') no-repeat;">
+     <div class="wrapper">
+
+	<ui:include src="/template/header.xhtml" />   
+      <ui:include src="/template/sidebar.xhtml" />   
+      
+	   
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+            
+
+        <section class="content-header">
+             
+    <p:growl id="messages" showDetail="true" />
+     <p:tabView>
+         	<p:ajax event="tabChange" listener="#{dispo3gB.onTabChange}"  />
+        
+          <!--Disponibilite 3g-->
+         <p:tab title="Availability 3G"   titleStyle="" >
+         <h:form prependId="false" id="form1" styleClass="styleGreen">
+	
+             <p:growl id="msgs1" showDetail="true" />
+		<p:panel id="panel1"  style="width: 400px; position:relative; left:100px">
+		 	<br/>
+			<h:panelGrid columns="2">
+			<p:outputLabel for="popup1" value=" From   " /> 
+                        <p:calendar id="popup1"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dispo3gB.dataInicial}" >
+	                <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs1"/>
+        		</p:calendar>
+        	        <p:outputLabel for="pou11" value=" To  " />
+                        <p:calendar id="pou11"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dispo3gB.dataFinal}" >
+    		       <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs1"/>
+        		</p:calendar>
+                        <p:outputLabel for="bsc1" value="BscName   "/>
+                       <p:selectOneMenu id="bsc1" value="#{dispo3gB.bscName}" effect="fold" editable="true">
+                       <f:selectItem itemLabel="Select One" itemValue="" />
+                       <f:selectItems value="#{viewConfig.bscList3g}" />
+                          </p:selectOneMenu>
+                        </h:panelGrid>
+			<br/><br/>
+                        <p:commandButton value="validate" actionListener="#{dispo3gB.chartview()}" update="panelD3G" ajax="false"  />
+	              			
+                      </p:panel> 
+	                  </h:form>
+		    </p:tab>
+         
+         
+         <!--Disponibilite Bss Bsc-->
+         
+        <p:tab title="Availability Bss Bsc" >
+            <h:form prependId="false" id="form2" styleClass="styleGreen">
+		<p:growl id="msgs2" showDetail="true" />
+		<p:panel id="panel2"  style="width: 400px; position:relative; left:100px">
+		 	<br/>
+			<h:messages globalOnly="true" style="color:red"></h:messages>
+			<h:panelGrid columns="2">
+			
+			<p:outputLabel for="popup2" value=" From" />
+                        <p:calendar id="popup2"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dispoBscB.dataInicial}" >
+	                <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs2"/>
+        		</p:calendar>
+        	
+			<p:outputLabel for="pou12" value=" To" />
+                        <p:calendar id="pou12"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dispoBscB.dataFinal}" >
+    		     <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs2"/>
+        		</p:calendar>
+        	
+                        <p:outputLabel for="bsc2" value="BscName "/>
+
+                        <p:selectOneMenu id="bsc2" value="#{dispoBscB.bscName}" effect="fold" editable="true">
+                      <f:selectItem itemLabel="Select One" itemValue="" />
+                      <f:selectItems value="#{viewConfig.bscList}" />
+                          </p:selectOneMenu>
+                  
+                        </h:panelGrid>
+    		
+			
+			<br/><br/>
+                        
+                        <p:commandButton value="validate" actionListener="#{dispoBscB.chartview()}" update="panelDbsc" ajax="false"  />
+			 
+	    </p:panel> 
+			
+		</h:form>
+        </p:tab>
+         
+         <!--Disponibilite Bss cell-->
+         <p:tab title="Availability cell">
+              <h:form prependId="false" id="form3" styleClass="styleGreen">
+		
+		<p:growl id="msgs3" showDetail="true" />
+		
+		<p:panel id="panel3"  style="width: 400px; position:relative; left:100px">
+		 	
+		 	<br/>
+			<h:messages globalOnly="true" style="color:red"></h:messages>
+			<h:panelGrid columns="2">
+			
+			<p:outputLabel for="popup3" value=" From" />
+                        <p:calendar id="popup3"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dispoCellB.dataInicial}" >
+	                <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs3"/>
+        		</p:calendar>
+        	
+			<p:outputLabel for="pou13" value=" To" />
+                        <p:calendar id="pou13"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dispoCellB.dataFinal}" >
+                         <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs3"/>
+        		</p:calendar>
+        	
+                        <p:outputLabel for="bsc3" value="BscName "/>
+                        <p:selectOneMenu id="bsc3" value="#{dispoCellB.bscName}" effect="fold" editable="true">
+                      <f:selectItem itemLabel="Select One" itemValue="" />
+                      <f:selectItems value="#{viewConfig.bscList}" />
+                          </p:selectOneMenu>
+                  
+                        
+                        </h:panelGrid>
+    		
+			
+			<br/><br/>
+                        
+                        <p:commandButton value="validate"  update="panelDcell"  action="#{dispoCellB.chartview()}" ajax="false"  />
+	    </p:panel> 
+		</h:form>
+        </p:tab>
+         
+         <!--Disponibilite drop bsc-->
+        <p:tab title="Drop Bss Bsc">
+             <h:form prependId="false" id="form4" styleClass="styleGreen">
+		
+		<p:growl id="msgs4" showDetail="true" />
+		
+		<p:panel id="panel4"  style="width: 400px; position:relative; left:100px">
+		 	
+		 	<br/>
+			<h:messages globalOnly="true" style="color:red"></h:messages>
+			<h:panelGrid columns="2">
+			
+			<p:outputLabel for="popup4" value=" From" />
+                        <p:calendar id="popup4"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dropBscB.dataInicial}" >
+	        <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs4"/>
+        		</p:calendar>
+        	
+			<p:outputLabel for="pou14" value=" To" />
+                        <p:calendar id="pou14"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dropBscB.dataFinal}" >
+                     <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs4"/>
+        		</p:calendar>
+        	
+                        <p:outputLabel for="bsc4" value="BscName "/>
+
+                        <p:selectOneMenu id="bsc4" value="#{dropBscB.bscName}" effect="fold" editable="true">
+                      <f:selectItem itemLabel="Select One" itemValue="" />
+                      <f:selectItems value="#{viewConfig.bscList}" />
+                          </p:selectOneMenu>
+                     
+                        </h:panelGrid>
+    		
+			
+			<br/><br/>
+                        
+                        <p:commandButton value="validate"  update="panelDrbsc"  action="#{dropBscB.chartview()}" ajax="false" />
+	    </p:panel> 
+		</h:form>
+        </p:tab>
+         
+         <!--Disponibilite Drop Cell-->
+        <p:tab title="Drop Bss Cell">
+             <h:form prependId="false" id="form5" styleClass="styleGreen">
+		
+		<p:growl id="msgs5" showDetail="true" />
+		
+		<p:panel id="panel5"  style="width: 400px; position:relative; left:100px">
+		 	
+		 	<br/>
+			<h:messages globalOnly="true" style="color:red"></h:messages>
+			<h:panelGrid columns="2">
+			
+			<p:outputLabel for="popup5" value=" From" />
+                        <p:calendar id="popup5"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dropCellB.dataInicial}" >
+	        <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs5"/>
+        		</p:calendar>
+        	
+			<p:outputLabel for="pou15" value=" To" />
+                        <p:calendar id="pou15"  locale="pt"    pattern="dd/MM/yyyy"  value="#{dropCellB.dataFinal}" >
+    		     <p:ajax event="dateSelect" listener="#{dispo3gB.onDateSelect}" update="msgs5"/>
+        		</p:calendar>
+        	
+                        <p:outputLabel for="bsc" value="BscName "/>
+
+                        <p:selectOneMenu id="bsc" value="#{dropCellB.bscName}" effect="fold" editable="true">
+                      <f:selectItem itemLabel="Select One" itemValue="" />
+                      <f:selectItems value="#{viewConfig.bscList}" />
+                          </p:selectOneMenu>
+                      
+                        </h:panelGrid>
+    		
+			
+			<br/><br/>
+                        
+                        <p:commandButton value="validate"  update="panelDrcell"  action="#{dropCellB.chartview()}" ajax="false" />
+	    </p:panel> 
+		</h:form>
+        </p:tab>
+         
+         
+    </p:tabView>
+        
+         </section>
+<br/>  
+	  <br/>
+        <!-- Main content -->
+        <section class="content" style="background:url('/TTProjet_FE/resources/img/backG.jpg') no-repeat;">
+
+          <!-- Your Page Content Here -->
+          
+		<!--Panel dispo3g-->	
+                
+          <h:panelGroup id="panelD3G"  layout="block"  >
+            <p:fieldset  rendered="#{dispo3gB.editable}"> 
+                <h:form>
+                    <p:dataTable id="datatable3g" var="file" paginator="true" rows="15" value="#{dispo3gB.lista}" filterEvent="enter" rendered="#{dispo3gB.editable}" style="left: 50px;" >  
+            <p:column headerText="BSC_Name">  
+                <h:outputText value="#{file.city}" />  
+            </p:column>
+            <p:column headerText="Site" filterBy="#{file.site3g}">  
+                <h:outputText value="#{file.site3g}" />  
+            </p:column>  
+      
+            <p:column headerText="Cellule">  
+                <h:outputText value="#{file.code}" />  
+            </p:column>  
+             <p:column headerText="TCH Availibility">  
+                <h:outputText value="#{file.val}" />  
+            </p:column>  
+          <p:column headerText="date">  
+                <h:outputText value="#{file.date}" />  
+            </p:column>  
+          
+           </p:dataTable>  
+           <br/>
+            <br/>
+            <h:commandLink>
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="datatable3g" fileName="file"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage value="/resources/img/csv.png" width="24"/>
+                    <p:dataExporter type="xlsx" target="datatable3g" fileName="file" />
+                </h:commandLink>
+                <br/> <br/> <br/>
+          <p:chart type="line" model="#{dispo3gB.dateModel}" style=" height: 300px;"  rendered="#{dispo3gB.editable}" widgetVar="lineWV1" />
+             <br/>
+               <br/>
+              
+              <p:commandLink onclick="exportChartInPDF1()">
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+               </p:commandLink>
+                  
+              </h:form>
+             
+            </p:fieldset > 
+          
+          </h:panelGroup>
+               
+                
+                <!--Panel dispo bsc-->
+          <h:panelGroup id="panelDbsc"   layout="block">
+              <p:fieldset  rendered="#{dispoBscB.editableDBsc}"> 
+            <h:form>
+              <p:dataTable id="dataTableDbsc" var="file" paginator="true" rows="15" value="#{dispoBscB.lista}" rendered="#{dispoBscB.editableDBsc}">  
+             
+                <p:column headerText="bscName">  
+              <h:outputText value="#{file.BSC_NAME}" />  
+               </p:column>
+                             
+            <p:column headerText="date">  
+            <h:outputText value="#{file.date}" />  
+            </p:column>  
+            <p:column headerText="tchTraffic">  
+            <h:outputText value="#{file.tchTraffic}" />  
+            </p:column>  
+            <p:column headerText="trafficHR">  
+            <h:outputText value="#{file.trafficHR}" />  
+            </p:column>  
+            <p:column headerText="configTCHNumber">  
+            <h:outputText value="#{file.configTCHNumber}" />  
+            </p:column>  
+            <p:column headerText="tchAvailibility">  
+            <h:outputText value="#{file.tchAvailibility}" />  
+            </p:column>  
+            </p:dataTable>
+              <br/>
+               <br/>
+               <h:commandLink>
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="dataTableDbsc" fileName="file"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage value="/resources/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="dataTableDbsc" fileName="file" postProcessor="#{viewConfig.postProcessXLS}" />
+                </h:commandLink>
+<br/>
+<br/>
+<p:chart type="line"  model="#{dispoBscB.dateModel}" style="height:300px;" rendered="#{dispoBscB.editableDBsc}" widgetVar="lineWV2"   />
+      
+<br/>
+               <br/>
+              
+              <p:commandLink onclick="exportChartInPDF2()">
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+               </p:commandLink>
+                
+                </h:form> 
+          </p:fieldset > 
+
+          </h:panelGroup>
+              
+              <!--Panel dispo cell-->          
+          <h:panelGroup id="panelDcell"   layout="block" > 
+              <p:fieldset  rendered="#{dispoCellB.editableDcell}"> 
+                 <h:form>
+                     <p:dataTable id="dataTableDcell" var="file" paginator="true" rows="15" value="#{dispoCellB.lista}" filterEvent="enter" rendered="#{dispoCellB.editableDcell}">  
+            <p:column headerText="bscName">  
+                <h:outputText value="#{file.bscName}" />  
+            </p:column>
+            
+            <p:column headerText="sitename" filterBy="#{file.sitename}">  
+                <h:outputText value="#{file.sitename}" />  
+            </p:column>  
+      
+            <p:column headerText="cellName">  
+                <h:outputText value="#{file.cellName}" />  
+            </p:column>  
+             <p:column headerText="tchTrafficBh">  
+                <h:outputText value="#{file.tchTrafficBh}" />  
+            </p:column>  
+          <p:column headerText="tchCongestionBh">  
+                <h:outputText value="#{file.tchCongestionBh}" />  
+            </p:column>  
+        
+            <p:column headerText="avgAvailibilityTch">  
+                <h:outputText value="#{file.avgAvailibilityTch}" />  
+            </p:column>  
+            <p:column headerText="configTchNum">  
+                <h:outputText value="#{file.configTchNum}" />  
+            </p:column>  
+               <p:column headerText="tchAvailability">  
+                <h:outputText value="#{file.tchAvailability}" />  
+            </p:column>  
+ 
+         <p:column headerText="date">  
+                <h:outputText value="#{file.date}" />  
+            </p:column>  
+           
+                  
+           </p:dataTable>  
+    
+              <br/>
+            <br/>
+            <br/>     
+              <h:commandLink>
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="dataTableDcell" fileName="file"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage value="/resources/img/csv.png" width="24"/>
+                    <p:dataExporter type="csv" target="dataTableDcell" fileName="file" />
+                </h:commandLink>
+         <br/>
+         <br/>
+         <br/>
+            <p:chart type="line" model="#{dispoCellB.dateModel}"  style="height:300px;"  rendered="#{dispoCellB.editableDcell}" widgetVar="lineWV3"/>
+               
+            <br/>
+               <br/>
+              
+              <p:commandLink onclick="exportChartInPDF3()">
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+               </p:commandLink>
+               
+              </h:form>
+            
+             </p:fieldset >
+          </h:panelGroup>
+              
+              
+              <!--Panel drop bsc-->
+          <h:panelGroup id="panelDrbsc"   layout="block" > 
+              <p:fieldset  rendered="#{dropBscB.editableDrBsc}"> 
+              <h:form>
+           <p:dataTable id="dataTableDrbsc" var="file" paginator="true" rows="15" value="#{dropBscB.lista}" rendered="#{dropBscB.editableDrBsc}">  
+            <p:column headerText="bscName">  
+                <h:outputText value="#{file.bscName}" />  
+            </p:column>
+            <p:column headerText="tchTraffic">  
+                <h:outputText value="#{file.tchTraffic}" />  
+            </p:column>  
+      
+            <p:column headerText="trafficHr">  
+                <h:outputText value="#{file.trafficHr}" />  
+            </p:column>  
+             <p:column headerText="tchAvailability">  
+                 <h:outputText value="#{file.tchAvailability}" />  
+            </p:column>  
+             <p:column headerText="tchDrop">  
+                 <h:outputText value="#{file.tchDrop}" />  
+            </p:column>  
+          <p:column headerText="dropBss">  
+                <h:outputText value="#{file.dropBss}" />  
+            </p:column> 
+            <p:column headerText="date">  
+                <h:outputText value="#{file.date}" />  
+            </p:column>  
+       
+          
+           </p:dataTable>  
+                                   <br/>
+                                   <br/>
+   <h:commandLink>
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="dataTableDrbsc" fileName="file"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage value="/resources/img/csv.png" width="24"/>
+                    <p:dataExporter type="csv" target="dataTableDrbsc" fileName="file" />
+                </h:commandLink>
+
+        <br/><br/>
+       <br/>
+       <p:chart type="line" model="#{dropBscB.dateModel}"  style="height:300px;"  rendered="#{dropBscB.editableDrBsc}" widgetVar="lineWV4"/>
+       <br/>
+       <br/>
+             
+         <p:commandLink onclick="exportChartInPDF4()">
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+               </p:commandLink>
+             <p:chart type="line" model="#{dropBscB.dateModel2}"  style="height:300px;"  rendered="#{dropBscB.editableDrBsc}" widgetVar="lineWVTRF"/>
+        
+       <p:commandLink onclick="exportChartInPDFtrf()">
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+               </p:commandLink>
+         
+              </h:form>
+                           </p:fieldset >
+          </h:panelGroup>
+              
+          
+              <!--Panel drop cell-->
+          <h:panelGroup id="panelDrcell"   layout="block" > 
+              <p:fieldset  rendered="#{dropCellB.editableDrcell}"> 
+                  <h:form>
+                  <p:dataTable id="dataTableDrcell" var="file" paginator="true" rows="15" value="#{dropCellB.lista}" filterEvent="enter" rendered="#{dropCellB.editableDrcell}">  
+            <p:column headerText="city">  
+                <h:outputText value="#{file.city}" />  
+            </p:column>
+            <p:column headerText="site" filterBy="#{file.site}" >  
+                <h:outputText value="#{file.site}" />  
+            </p:column>  
+      
+            <p:column headerText="cell">  
+                <h:outputText value="#{file.cell}" />  
+            </p:column>  
+             <p:column headerText="tchTraffic">  
+                <h:outputText value="#{file.tchTraffic}" />  
+            </p:column> 
+            
+           <p:column headerText="tchAvailibility">  
+               <h:outputText value="#{file.tchAvailibility}" />  
+            </p:column> 
+            <p:column headerText="tchDrop">  
+                <h:outputText value="#{file.tchDrop}" />  
+            </p:column> 
+           <p:column headerText="dropBss">  
+                <h:outputText value="#{file.dropBss}" />  
+            </p:column> 
+          <p:column headerText="nbrDropBss">  
+                <h:outputText value="#{file.nbrDropBss}" />  
+            </p:column> 
+             
+          <p:column headerText="date">  
+                <h:outputText value="#{file.date}" />  
+            </p:column>  
+          
+           </p:dataTable>  
+                  <br/><br/>
+                   <h:commandLink>
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="dataTableDrcell" fileName="dropBscCell"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage value="/resources/img/csv.png" width="24"/>
+                    <p:dataExporter type="csv" target="dataTableDrcell" fileName="dropBscCell" />
+                </h:commandLink>
+
+ <br/>
+       <br/>
+       <br/>
+       <p:chart type="line" model="#{dropCellB.dateModel}"  style="height:300px;"  rendered="#{dropCellB.editableDrcell}" widgetVar="lineWV5"/>
+      <br/>
+       <br/>
+        
+                <p:commandLink onclick="exportChartInPDF5()">
+                    <p:graphicImage value="/resources/img/pdf.png" width="24"/>
+               </p:commandLink>
+          </h:form>
+               </p:fieldset >
+               
+          </h:panelGroup>
+            
+      
+           
+                
+      
+         </section><!-- /.content -->
+         
+      </div><!-- /.content-wrapper -->
+
+          <ui:include src="/template/footer.xhtml" />   
+   <ui:include src="/template/sidebarCtrl.xhtml" />   
+       <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+<ui:include src="/resources/js.xhtml" />  
+ <h:outputScript name="js/pdfmake/pdfmake.min.js" />
+        <h:outputScript name="js/pdfmake/vfs_fonts.js" />  
+      
+<script>
+   function exportChartInPDF1() {
+      var docDefinition = {
+         content: [
+	   'Line Chart',
+	   {
+	      image: $(PF('lineWV1').exportAsImage()).attr('src'),
+	      width: 520
+	   }		
+	 ]
+      }
+      pdfMake.createPdf(docDefinition).open();
+      pdfMake.createPdf(docDefinition).download('primefaces-charts.pdf');
+   }
+   function exportChartInPDF2() {
+      var docDefinition = {
+         content: [
+	   'Line Chart',
+	   {
+	      image: $(PF('lineWV2').exportAsImage()).attr('src'),
+	      width: 520
+	   }		
+	 ]
+      }
+      pdfMake.createPdf(docDefinition).open();
+      pdfMake.createPdf(docDefinition).download('primefaces-charts.pdf');
+   }
+   function exportChartInPDF3() {
+      var docDefinition = {
+         content: [
+	   'Line Chart',
+	   {
+	      image: $(PF('lineWV3').exportAsImage()).attr('src'),
+	      width: 520
+	   }		
+	 ]
+      }
+      pdfMake.createPdf(docDefinition).open();
+      pdfMake.createPdf(docDefinition).download('primefaces-charts.pdf');
+   }
+   function exportChartInPDF4() {
+      var docDefinition = {
+         content: [
+	   'Line Chart',
+	   {
+	      image: $(PF('lineWV4').exportAsImage()).attr('src'),
+	      width: 520
+	   }		
+	 ]
+      }
+      pdfMake.createPdf(docDefinition).open();
+      pdfMake.createPdf(docDefinition).download('primefaces-charts.pdf');
+   }
+   function exportChartInPDFtrf() {
+      var docDefinition = {
+         content: [
+	   'Line Chart',
+	   {
+	      image: $(PF('lineWV4trf').exportAsImage()).attr('src'),
+	      width: 520
+	   }		
+	 ]
+      }
+      pdfMake.createPdf(docDefinition).open();
+      pdfMake.createPdf(docDefinition).download('primefaces-charts.pdf');
+   }
+   function exportChartInPDF5() {
+      var docDefinition = {
+         content: [
+	   'Line Chart',
+	   {
+	      image: $(PF('lineWV5').exportAsImage()).attr('src'),
+	      width: 520
+	   }		
+	 ]
+      }
+      pdfMake.createPdf(docDefinition).open();
+      pdfMake.createPdf(docDefinition).download('primefaces-charts.pdf');
+   }
+   
+   
+  </script>
+  
+</h:body>  
+
+    </html>  
+
+ 

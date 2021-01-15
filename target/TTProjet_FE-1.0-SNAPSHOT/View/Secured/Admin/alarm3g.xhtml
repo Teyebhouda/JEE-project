@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+>
+     
+<h:head> 
+
+        <ui:include src="/resources/css.xhtml" />   
+      
+
+</h:head>
+<h:body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+	<ui:include src="/template/header.xhtml" />   
+      <ui:include src="/template/sidebar.xhtml" />   
+      
+	   
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header"> 
+          
+                 <h:form id="formkpa">  
+  
+        <p:growl id="messages" showDetail="true"  />  
+         <br/>  
+        <p:spacer> </p:spacer>  
+        
+              
+        <p:dataTable var="kpa" id="userTable" editable="true" value="#{kpaB.listkpa}"   >  
+            <p:ajax event="rowEdit" id="df"  listener="#{kpaB.onRowEdit}" update=":formkpa:messages"  />  
+           <p:ajax event="rowEditCancel" listener="#{kpaB.onCancel}" update=":formkpa:messages" />  
+                  
+            <f:facet name="header">  
+                KPI
+            </f:facet>  
+              <p:column headerText="bscName3g">  
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{kpa.bscName3g}" />  
+                    </f:facet>  
+                    <f:facet name="input">  
+                        
+                        <p:inputText id="modelInput" value="#{kpa.bscName3g}" style="width:100%" />  
+                    </f:facet>  
+                </p:cellEditor>  
+            </p:column> 
+             
+              <p:column headerText=" BSCName2g">  
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{kpa.bscName3g}" />  
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:inputText value="#{kpa.bscName3g}" style="width:100%" />  
+                    </f:facet>  
+                </p:cellEditor>  
+  
+            </p:column>  
+  
+            <p:column headerText="KPI3g">  
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{kpa.KPA3g}" />  
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:inputText value="#{kpa.KPA3g}" style="width:100%" />  
+                    </f:facet>  
+                </p:cellEditor>  
+            </p:column>  
+            <p:column headerText="KPI2GBSC">  
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{kpa.KPAdisobsc}">  
+                        </h:outputText>  
+                    </f:facet>  
+  
+                    <f:facet name="input">  
+                        <p:inputText value="#{kpa.KPAdisobsc}" style="width:100%" />  
+                    </f:facet>  
+                </p:cellEditor>  
+            </p:column>  
+            <p:column headerText="KPI2GCell" width="100">  
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{kpa.KPAdispocell}" />  
+                    </f:facet>  
+                                      <f:facet name="input">  
+                        <p:inputText value="#{kpa.KPAdisobsc}" style="width:100%" />  
+                    </f:facet> 
+                    </p:cellEditor>
+           </p:column>
+            
+             <p:column headerText="KPIdropBSC">  
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{kpa.KPAdropbsc}" />  
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:inputText value="#{kpa.KPAdropbsc}" style="width:100%" />  
+                    </f:facet>  
+                </p:cellEditor>  
+            </p:column>
+             <p:column headerText="KPIdropCell">  
+                <p:cellEditor>  
+                    <f:facet name="output">  
+                        <h:outputText value="#{kpa.KPAdropcell}" />  
+                    </f:facet>  
+                    <f:facet name="input">  
+                        <p:inputText value="#{kpa.KPAdropcell}" style="width:100%" />  
+                    </f:facet>  
+                </p:cellEditor>  
+            </p:column>
+          
+  
+              <p:column headerText="Edit" style="width:100px">
+                
+                <p:rowEditor />  
+            </p:column>  
+            
+        </p:dataTable>  
+    </h:form>  
+    
+            <br/><br/>
+             <br/><br/>
+     
+        </section>
+       
+    <section class="content" style="background:url('/TTProjet_FE/resources/img/backG.jpg') no-repeat;"> 
+
+        <!-- Main content -->
+         <p:fieldset  > 
+            <center><h2 class="form-signin-heading">Alarm 3G</h2></center>
+    <br/> 
+    <h:form id="form1">  
+        <p:dataTable id="datatable3g" var="file"  value="#{dispo3gB.listDispo3gkpa}" filterEvent="enter"  style="left: 50px;" >  
+            <p:column headerText="BSC_Name">  
+                <h:outputText value="#{file[0]}" />  
+            </p:column>
+            <p:column headerText="Site">  
+                <h:outputText value="#{file[1]}" />  
+            </p:column>
+            <p:column headerText="code">  
+                <h:outputText value="#{file[2]}" />  
+            </p:column>
+            <p:column headerText="TCH_availibility">  
+                <h:outputText value="#{file[3]}" />  
+            </p:column>
+            <p:column headerText="date">  
+                <h:outputText value="#{file[4]}" />  
+            </p:column>
+            
+            </p:dataTable>  
+         </h:form>
+      
+            
+        
+            
+    </p:fieldset  > 
+    <br/> <br/>
+     <p:fieldset  > 
+         <center><h2 class="form-signin-heading">Alarm 2G </h2></center>
+    <br/>
+          <h:form id="form">  
+                 <p:dataTable id="datatable" var="file2"  value="#{dispoBscB.listDispobsckpa}" filterEvent="enter"  style="left: 50px;" >  
+            <p:column headerText="BSC_Name">  
+                <h:outputText value="#{file2[0]}" />  
+            </p:column>
+            <p:column headerText="Date" >  
+                <h:outputText value="#{file2[1]}" />  
+            </p:column>  
+      
+            <p:column headerText="TCH_TRAFFIC">  
+                <h:outputText value="#{file2[2]}" />  
+            </p:column>  
+             <p:column headerText="Traffic_HR">  
+                <h:outputText value="#{file2[3]}" />  
+            </p:column>  
+          <p:column headerText="Config_TCH_Number">  
+                <h:outputText value="#{file2[4]}" />  
+            </p:column> 
+                     <p:column headerText="TCH_AVAILIBILITY">  
+                <h:outputText value="#{file2[5]}" />  
+            </p:column>
+                     
+          
+           </p:dataTable>  
+         </h:form>
+            <br/> <br/>
+             
+            <h:form id="form3">  
+                <p:dataTable id="datatable3" var="file3"  value="#{dispoCellB.listDispoCellkpa}" filterEvent="enter"  style="left: 50px;" >  
+            <p:column headerText="BSC_Name">  
+                <h:outputText value="#{file3[0]}" />  
+            </p:column>
+            <p:column headerText="Site" >  
+                <h:outputText value="#{file3[1]}" />  
+            </p:column>  
+      
+            <p:column headerText="Cellule">  
+                <h:outputText value="#{file3[2]}" />  
+            </p:column>  
+             <p:column headerText="TCH_TRAFFIC_BH">  
+                <h:outputText value="#{file3[3]}" />  
+            </p:column>  
+          <p:column headerText="TCH_CONGESTION_BH">  
+                <h:outputText value="#{file3[4]}" />  
+            </p:column>  
+          <p:column headerText="CONFIG_TCH_NUM">  
+                <h:outputText value="#{file3[5]}" />  
+            </p:column>  
+          
+                    <p:column headerText="date">  
+                <h:outputText value="#{file3[6]}" />  
+            </p:column> 
+          
+           </p:dataTable>  
+         </h:form>
+            </p:fieldset  >
+            <br/><br/>
+            <!--
+            <p:fieldset  > 
+            
+             <h:form id="form">  
+              <p:dataTable id="datatable" var="file2" paginator="true" rows="15" value="#{dropBscB.listDropBsckpa}" filterEvent="enter"  style="left: 50px;" >  
+            <p:column headerText="BSC_Name">  
+                <h:outputText value="#{file2[0]}" />  
+            </p:column>
+            
+            <p:column headerText="TCH_TRAFFIC">  
+                <h:outputText value="#{file2[2]}" />  
+            </p:column>  
+                  
+             <p:column headerText="Traffic_HR">  
+                <h:outputText value="#{file2[3]}" />  
+            </p:column>  
+                    <p:column headerText="TCH_AVAILIBILITY">  
+                <h:outputText value="#{file2[4]}" />  
+            </p:column>
+                 <p:column headerText="TCH_DROP">  
+                <h:outputText value="#{file2[5]}" />  
+            </p:column>
+                  <p:column headerText="DROP_BSS">  
+                <h:outputText value="#{file2[6]}" />  
+            </p:column>     
+          <p:column headerText="Date" >  
+                <h:outputText value="#{file2[1]}" />  
+            </p:column>  
+      
+           </p:dataTable>  
+         </h:form>
+            <br/> <br/>
+             
+            <h:form id="form3">  
+                <p:dataTable id="datatable3" var="file3" paginator="true" rows="15" value="#{dropCellB.listDropcellkpa}" filterEvent="enter"  style="left: 50px;" >  
+            <p:column headerText="BSC_Name">  
+                <h:outputText value="#{file3[0]}" />  
+            </p:column>
+            <p:column headerText="Site" >  
+                <h:outputText value="#{file3[1]}" />  
+            </p:column>  
+      
+            <p:column headerText="Cellule">  
+                <h:outputText value="#{file3[2]}" />  
+            </p:column>  
+             <p:column headerText="TCH_TRAFFIC">  
+                <h:outputText value="#{file3[3]}" />  
+            </p:column>  
+                     <p:column headerText="TCH_availability">  
+                <h:outputText value="#{file3[4]}" />  
+            </p:column>  
+          <p:column headerText="TCH_drop">  
+                <h:outputText value="#{file3[5]}" />  
+            </p:column>  
+          <p:column headerText="drop_BSS">  
+                <h:outputText value="#{file3[6]}" />  
+            </p:column>  
+          <p:column headerText="Nbr_drop_BSS">  
+                <h:outputText value="#{file3[7]}" />  
+            </p:column>  
+          
+                    <p:column headerText="date">  
+                <h:outputText value="#{file3[8]}" />  
+            </p:column> 
+          
+           </p:dataTable>  
+         </h:form>
+           </p:fieldset  >
+           -->
+ <!-- /.content -->
+  </section>
+      </div><!-- /.content-wrapper -->
+
+          <ui:include src="/template/footer.xhtml" />   
+   <ui:include src="/template/sidebarCtrl.xhtml" />   
+       <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+<ui:include src="/resources/js.xhtml" />   
+  
+</h:body>  
+
+    </html>  
+
+ 

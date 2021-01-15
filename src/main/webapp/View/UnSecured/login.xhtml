@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+      <ui:include src="/resources/css.xhtml" />   
+      
+        <title>Login</title>
+        
+ </h:head>
+<body style="background:url('/TTProjet_FE/resources/img/backG.jpg') no-repeat;">
+    
+<c:if test="${'fail' eq param.auth}">
+    <div style="color:red">
+        Login Failed!!!<br/>
+            Reason : Bad Credentials!Please Try Again.
+    </div>
+
+</c:if>
+<p:graphicImage value="/resources/img/LOGO_TT_.jpg" width="120" />
+
+     <center>
+         <h:form prependId="false" id="form">
+             
+            <p:panelGrid columns="2" style="border-bottom-width: 0px;">
+                <h:outputText value="UserName:"/>
+                <p:inputText value="#{loginController.username}" id="username" required="true" requiredMessage="UserName is required"/>
+                <h:outputText value="Password:"/>
+                <p:password value="#{loginController.password}" id="password" required="true" requiredMessage="Password is required"/>
+                                            
+            </p:panelGrid>
+             <p:spacer height="20px" width="10px">  </p:spacer>
+             <p:row ><p:selectBooleanCheckbox label="Remember Me" id="remember-me" >Remember Me </p:selectBooleanCheckbox>
+                 <h:outputText value=" " /> </p:row><br></br> 
+                 <p:row> <p:commandButton action="#{loginController.login()}" value="Log In" ajax="false"/> </p:row>
+             <h4 class="text-center"><a style="color: #c40" href="${request.contextPath}/View/UnSecured/register.xhtml">Create an account</a></h4>
+              
+        </h:form>
+         
+</center>
+    
+<!-- REQUIRED JS SCRIPTS -->
+<ui:include src="/resources/js.xhtml" />   
+		
+</body>
+ 
+</html>

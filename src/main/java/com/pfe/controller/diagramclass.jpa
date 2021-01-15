@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="5.0-beta-rc1" status="GENERATED" persistenceUnitName="DEFAULT_PU" sm="false" id="_15526610009371" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity abs="false" class="User" v="true" xre="false" m="false" rootElement="_15526610009371" id="_15526610074422">
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="firstName" jbt="false" id="_15526610081534">
+                <jpa:column name="first_name" unique="false" nullable="false" insertable="true" updatable="true" length="50"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="lastName" jbt="false" id="_15526610100335">
+                <jpa:column name="last_name" unique="false" nullable="false" insertable="true" updatable="true" length="50"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="email" jbt="false" id="_15526610108466">
+                <jpa:column name="email" unique="false" nullable="false" insertable="true" updatable="true" length="50"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="username" jbt="false" id="_15526610114807">
+                <jpa:column name="user_name" unique="false" nullable="false" insertable="true" updatable="true" length="50"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="password" jbt="false" id="_15526610120488">
+                <jpa:column name="password" unique="false" nullable="false" insertable="true" updatable="true" length="100"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Boolean" v="true" am="PRIVATE" name="enabled" jbt="false" id="_15526610124689">
+                <jpa:column name="enabled" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:one-to-many own="false" collection-type="java.util.Set" connected-entity-id="_155266101646237" connected-attribute-id="_155266101759340" fetch="EAGER" v="true" am="PRIVATE" name="roles" dv="new HashSet&lt;Role&gt;(0)" jbt="false" id="_155266101288110">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="int" v="true" am="PRIVATE" name="userId" jbt="false" id="_15526610076933">
+                <jpa:column name="user_id" unique="true" nullable="false" insertable="true" updatable="true"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="user" catalog="ttdatabase">
+            <jpa:unique-constraint>
+                <jpa:column-name>user_name</jpa:column-name>
+                <jpa:column-name>password</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Dispo3g" v="true" xre="true" m="false" rootElement="_15526610009371" id="_155266101408511">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="BSC_NAME" jbt="false" id="_155266101416613">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="300"/>
+                </jpa:bv>
+                <jpa:column name="BSC_NAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="site3g" jbt="false" id="_155266101424514">
+                <jpa:bv>
+                    <jpa:si ma="300"/>
+                </jpa:bv>
+                <jpa:column name="site_3g" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="code" jbt="false" id="_155266101433315">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="300"/>
+                </jpa:bv>
+                <jpa:column name="code" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="val" jbt="false" id="_155266101441216">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="val" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" am="PRIVATE" name="date" jbt="false" id="_155266101441217">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="date" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Integer" v="true" am="PRIVATE" name="id" jbt="false" id="_155266101408612">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="true" name="Dispo3g.findAll">
+            <jpa:query>SELECT d FROM Dispo3g d</jpa:query>
+        </jpa:nq>
+        <jpa:table name="dispo3g"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Disponibilitebsc" v="true" xre="true" m="false" rootElement="_15526610009371" id="_155266101449518">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="site" jbt="false" id="_155266101464920">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="22"/>
+                </jpa:bv>
+                <jpa:column name="BSC_NAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" am="PRIVATE" name="date" jbt="false" id="_155266101480321">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="DATE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchTraffic" jbt="false" id="_155266101496922">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_TRAFFIC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="trafficHR" jbt="false" id="_155266101496923">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="Traffic_HR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="configTCHNumber" jbt="false" id="_155266101496924">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="Config_TCH_Number" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchAvailibility" jbt="false" id="_155266101497025">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_AVAILIBILITY" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Integer" v="true" am="PRIVATE" name="id" jbt="false" id="_155266101449519">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="true" name="Disponibilitebsc.findAll">
+            <jpa:query>SELECT d FROM Disponibilitebsc d</jpa:query>
+        </jpa:nq>
+        <jpa:table name="disponibilitebsc"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Processedfile" v="true" xre="true" m="false" rootElement="_15526610009371" id="_155266101497026">
+        <jpa:attributes>
+            <jpa:id attribute-type="String" v="true" am="PRIVATE" name="nom" jbt="false" id="_155266101497127">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="300"/>
+                </jpa:bv>
+                <jpa:column name="NOM" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="true" name="Processedfile.findAll">
+            <jpa:query>SELECT p FROM Processedfile p</jpa:query>
+        </jpa:nq>
+        <jpa:table name="processedfile"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="DropBssBsc" v="true" xre="true" m="false" rootElement="_15526610009371" id="_155266101513428">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="bscName" jbt="false" id="_155266101529330">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="22"/>
+                </jpa:bv>
+                <jpa:column name="BSC_NAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" am="PRIVATE" name="date" jbt="false" id="_155266101584231">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="DATE" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchTraffic" jbt="false" id="_155266101644832">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_TRAFFIC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="trafficHr" jbt="false" id="_155266101644933">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TRAFFIC_HR" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchAvailability" jbt="false" id="_155266101644934">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_AVAILABILITY" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchDrop" jbt="false" id="_155266101645235">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_DROP" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="dropBss" jbt="false" id="_155266101645336">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="DROP_BSS" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Integer" v="true" am="PRIVATE" name="id" jbt="false" id="_155266101513429">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="true" name="DropBssBsc.findAll">
+            <jpa:query>SELECT d FROM DropBssBsc d</jpa:query>
+        </jpa:nq>
+        <jpa:table name="dropbssbsc"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Role" v="true" xre="false" m="false" rootElement="_15526610009371" id="_155266101646237">
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="role" jbt="false" id="_155266101646739">
+                <jpa:column name="role" unique="false" nullable="false" insertable="true" updatable="true" length="45"/>
+            </jpa:basic>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_15526610074422" connected-attribute-id="_155266101288110" fetch="EAGER" v="true" am="PRIVATE" name="user" jbt="false" id="_155266101759340">
+                <jpa:cascade/>
+                <jpa:join-column name="USER_ID" unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="int" v="true" am="PRIVATE" name="roleId" jbt="false" id="_155266101646538">
+                <jpa:column name="role_id" unique="true" nullable="false" insertable="true" updatable="true"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="role" catalog="ttdatabase">
+            <jpa:unique-constraint>
+                <jpa:column-name>user_id</jpa:column-name>
+                <jpa:column-name>role</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity abs="false" class="DisponibiliteCell" v="true" xre="true" m="false" rootElement="_15526610009371" id="_155266101842441">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="bscName" jbt="false" id="_155266101900443">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="22"/>
+                </jpa:bv>
+                <jpa:column name="BSC_NAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="sitename" jbt="false" id="_155266101964644">
+                <jpa:bv>
+                    <jpa:si ma="22"/>
+                </jpa:bv>
+                <jpa:column name="Site_name" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="cellName" jbt="false" id="_155266102026745">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="22"/>
+                </jpa:bv>
+                <jpa:column name="CELL_NAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchTrafficBh" jbt="false" id="_155266102087946">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_TRAFFIC_BH" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Float" v="true" am="PRIVATE" name="tchCongestionBh" jbt="false" id="_155266102088047">
+                <jpa:column name="TCH_CONGESTION_BH" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="avgAvailibilityTch" jbt="false" id="_155266102165848">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="AVG_AVAILIBILITY_TCH" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="configTchNum" jbt="false" id="_155266102165949">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="CONFIG_TCH_NUM" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchAvailability" jbt="false" id="_155266102165950">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_AVAILABILITY" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" am="PRIVATE" name="date" jbt="false" id="_155266102165951">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="date" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Integer" v="true" am="PRIVATE" name="id" jbt="false" id="_155266101842542">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="true" name="DisponibiliteCell.findAll">
+            <jpa:query>SELECT d FROM DisponibiliteCell d</jpa:query>
+        </jpa:nq>
+        <jpa:table name="disponibilite_cell"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Dropbsscellules" v="true" xre="true" m="false" rootElement="_15526610009371" id="_155266102233652">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="BSC_NAME" jbt="false" id="_155266102280554">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="22"/>
+                </jpa:bv>
+                <jpa:column name="BSC_NAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" am="PRIVATE" name="site" jbt="false" id="_155266102327055">
+                <jpa:bv>
+                    <jpa:si ma="22"/>
+                </jpa:bv>
+                <jpa:column name="site" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="cell" jbt="false" id="_155266102371956">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="22"/>
+                </jpa:bv>
+                <jpa:column name="cell" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchTraffic" jbt="false" id="_155266102418957">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_TRAFFIC" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchAvailibility" jbt="false" id="_155266102418958">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_AVAILIBILITY" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="tchDrop" jbt="false" id="_155266102418959">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="TCH_DROP" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="dropBss" jbt="false" id="_155266102419060">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="DROP_BSS" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="nbrDropBss" jbt="false" id="_155266102419061">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="NBR_DROP_BSS" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="java.util.Date" v="true" am="PRIVATE" name="date" jbt="false" id="_155266102419062">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:temporal>DATE</jpa:temporal>
+                <jpa:column name="date" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Integer" v="true" am="PRIVATE" name="id" jbt="false" id="_155266102233653">
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="true" name="Dropbsscellules.findAll">
+            <jpa:query>SELECT d FROM Dropbsscellules d</jpa:query>
+        </jpa:nq>
+        <jpa:table name="dropbsscellules"/>
+    </jpa:entity>
+    <jpa:entity abs="false" class="Kpa" v="true" xre="true" m="false" rootElement="_15526610009371" id="_155266102466263">
+        <jpa:attributes>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="bscName" jbt="false" id="_155266102493565">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="300"/>
+                </jpa:bv>
+                <jpa:column name="BSC_NAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="String" v="true" am="PRIVATE" name="bscName3g" jbt="false" id="_155266102516966">
+                <jpa:bv>
+                    <jpa:nn/>
+                    <jpa:si mi="1" ma="300"/>
+                </jpa:bv>
+                <jpa:column name="BSC_NAME3G" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="kPA3g" jbt="false" id="_155266102542367">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="KPA3g" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="kPAdisobsc" jbt="false" id="_155266102542368">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="KPAdisobsc" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="kPAdispocell" jbt="false" id="_155266102542469">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="KPAdispocell" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="kPAdropbsc" jbt="false" id="_155266102542470">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="KPAdropbsc" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic optional="false" attribute-type="float" v="true" am="PRIVATE" name="kPAdropcell" jbt="false" id="_155266102542471">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="KPAdropcell" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Integer" v="true" am="PRIVATE" name="id" jbt="false" id="_155266102466364">
+                <jpa:bv>
+                    <jpa:nn/>
+                </jpa:bv>
+                <jpa:column name="id" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="true" name="Kpa.findAll">
+            <jpa:query>SELECT k FROM Kpa k</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="true" name="Kpa.findById">
+            <jpa:query>SELECT k FROM Kpa k WHERE k.id = :id</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="true" name="Kpa.findByBscName">
+            <jpa:query>SELECT k FROM Kpa k WHERE k.bscName = :bscName</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="true" name="Kpa.findByBscName3g">
+            <jpa:query>SELECT k FROM Kpa k WHERE k.bscName3g = :bscName3g</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="true" name="Kpa.findByKPA3g">
+            <jpa:query>SELECT k FROM Kpa k WHERE k.kPA3g = :kPA3g</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="true" name="Kpa.findByKPAdisobsc">
+            <jpa:query>SELECT k FROM Kpa k WHERE k.kPAdisobsc = :kPAdisobsc</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="true" name="Kpa.findByKPAdispocell">
+            <jpa:query>SELECT k FROM Kpa k WHERE k.kPAdispocell = :kPAdispocell</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="true" name="Kpa.findByKPAdropbsc">
+            <jpa:query>SELECT k FROM Kpa k WHERE k.kPAdropbsc = :kPAdropbsc</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="true" name="Kpa.findByKPAdropcell">
+            <jpa:query>SELECT k FROM Kpa k WHERE k.kPAdropcell = :kPAdropcell</jpa:query>
+        </jpa:nq>
+        <jpa:table name="kpa"/>
+    </jpa:entity>
+</jpa:entity-mappings>

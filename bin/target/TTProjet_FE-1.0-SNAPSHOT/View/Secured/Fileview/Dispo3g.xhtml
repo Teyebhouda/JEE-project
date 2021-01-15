@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">  
+<h:head>  
+    <h2><center>Disponibilite 3G</center></h2>  
+</h:head>  
+<h:body>  
+  			<br/>  
+			<br/>
+			
+    <p:spacer> </p:spacer>  
+    
+    <h:form id="form1">  
+        <p:dataTable id="dataTable" var="file" paginator="true" rows="15" value="#{dispo3gB.listDispo3g}">  
+            <p:column headerText="city">  
+                <h:outputText value="#{file.city}" />  
+            </p:column>
+            <p:column headerText="site">  
+                <h:outputText value="#{file.site3g}" />  
+            </p:column>  
+      
+            <p:column headerText="code">  
+                <h:outputText value="#{file.code}" />  
+            </p:column>  
+             <p:column headerText="Val">  
+                <h:outputText value="#{file.val}" />  
+            </p:column>  
+          <p:column headerText="date">  
+                <h:outputText value="#{file.date}" />  
+            </p:column>  
+          
+           </p:dataTable>  
+    </h:form>  
+   <!-- <p:chart type="bar" model="#{dispo3gServiceImpl.barModel}" style="height:300px"/> -->
+               
+</h:body>  
+  
+</html>  

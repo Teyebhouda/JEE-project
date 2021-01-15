@@ -1,0 +1,9 @@
+#surefire
+#Fri Feb 08 11:48:15 CET 2019
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\Houda\\Documents\\NetBeansProjects\\TTProjet_FE
+file.encoding=UTF-8
+localRepository=C\:\\Users\\Houda\\.m2\\repository
+netbeans.deploy=true
+netbeans.deploy.clientUrlPart=/faces/template/sidebar.xhtml
+basedir=C\:\\Users\\Houda\\Documents\\NetBeansProjects\\TTProjet_FE
